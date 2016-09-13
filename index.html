@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RackPeople | ToolBox</title>
+    <script src="jquery-3.1.0.js"></script>
+    <script src="jquery.easy-autocomplete.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">    
+    <!--<link href="bootstrap.css" rel="stylesheet" />-->
+    <link rel="stylesheet" href="main.css">
+    <link href="easy-autocomplete.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">
+            <h1>RackPeople</h1>
+            <h2>ToolBox</h2>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">SearchBox</a></li>
+                <li><a href="http://rackpeople.com/">Rackpeople.com</a></li>
+                <li><a href="http://rackpeople.com/support/">Support&Aflastning</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="wrapper">
+            <section id="gallery">
+                <input type="text" id="KUNDE"  placeholder="Search by name or ID." /> <br /> <div id="loader" style="display:none;"><img src="loader.gif" /></div>
+                <button id="buton" type="button" class="btn-style" value="search" onclick="find();">Search</button>
+                <button id="button" class="btn-style">Clean Results</button>                
+            </section>            
+            <ul id="list"><li> </li> </ul>
+        </div>
+        <script>
+            $value = $("#KUNDE").val();           
+            $("#button").click(function (e) {
+                $("#list").find('li').remove();
+            });
+            $(function () {
+                $("#KUNDE").focus();
+            });
+            $(document).keypress(function (e) {
+                if (e.which == 13) {
+                    $("#buton").click();
+                }
+            });
+            var uri = '';
+            function find() {
+                var info = $('#KUNDE').val()
+                $("#loader").show();
+                    $.getJSON(uri)
+                    .done(function (data) {
+                        var item = data.filter(function (obj) {
+                            return obj.name === info || obj.ID === info;
+                        })[0];
+                        if (typeof item !== 'undefined' || item !== null) {
+                            $("#list").append("<li>ID      = " + item.ID + "<br />Name    = " + item.name + "<br />Phone      = " + item.phone + "<br />Contact       = " + item.contact + "<br />BalanceLCY      = " + item.balanceLCY + "<br /> CreditLimitLCY       = " + item.creditLimitLCY + "</li>");
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus, err) {
+                        $('#KUNDE').text('Error: ' + err);}).always(function (){$("#loader").hide();
+                    }); 
+            }       
+            var options = {
+                url: "",
+                getValue: "name",
+                list: {
+                    match: {
+                        enabled: true
+                    }
+                },
+                theme: "square"
+            };
+            $("#KUNDE").easyAutocomplete(options);
+        </script>
+    </div>
+    <footer>
+        <a href="https://twitter.com/rackpeople"><img src="https://image.freepik.com/free-icon/twitter-logo_318-50476.png" alt="Twitter Logo" class="social-icon"></a>
+        <a href="https://da-dk.facebook.com/RackPeople"><img src="http://www.wrapiowa.org/wp-content/uploads/2014/07/Facebook.jpg" alt="Facebook Logo" class="social-icon"></a>
+        <p>&copy; 2016 RackPeople.</p>
+    </footer>
+
+</body>
+</html>

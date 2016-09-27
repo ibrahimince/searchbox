@@ -87,7 +87,7 @@ background-color:#efefef;
     width: 100%;
     overflow:hidden;
     text-align: center;
-	clear:both;
+	
 }
 .social-icon{
 
@@ -100,4 +100,7 @@ background-color:#efefef;
 #logo {
   text-align: center;
   margin: 0;
+}
+.container{
+clear:both;
 }

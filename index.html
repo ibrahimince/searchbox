@@ -6,9 +6,9 @@
     <script src="jquery-3.1.0.js"></script>
     <script src="jquery.easy-autocomplete.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">    
-    <!--<link href="bootstrap.css" rel="stylesheet" />-->
+    <link href="bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="main.css">
-    <link href="easy-autocomplete.min.css" rel="stylesheet" />
+    
 </head>
 <body>
     <header>
@@ -25,56 +25,8 @@
         </nav>
     </header>
     <div class="container">
-        <div id="wrapper">
-            <section id="gallery">
-                <input type="text" id="KUNDE"  placeholder="Search by name or ID." required /> <br /> <div id="loader" style="display:none;"><img src="loader.gif" /></div>
-                <button id="buton" type="button" class="btn-style" value="search" onclick="find();">Search</button>
-                <button id="button" class="btn-style">Clean Results</button>                
-            </section>            
-            <ul id="list"><li> </li> </ul>
-        </div>
-        <script>
-            $value = $("#KUNDE").val();           
-            $("#button").click(function (e) {
-                $("#list").find('li').remove();
-            });
-            $(function () {
-                $("#KUNDE").focus();
-            });
-            $(document).keypress(function (e) {
-                if (e.which == 13) {
-                    $("#buton").click();
-                }
-            });
-            var uri = '';
-            function find() {
-                var info = $('#KUNDE').val()
-                $("#loader").show();
-                    $.getJSON(uri)
-                    .done(function (data) {
-                        var item = data.filter(function (obj) {
-                            return obj.name === info || obj.ID === info;
-                        })[0];
-                        if (typeof item !== 'undefined' || item !== null) {
-                            $("#list").append("<li>ID      = " + item.ID + "<br />Name    = " + item.name + "<br />Phone      = " + item.phone + "<br />Contact       = " + item.contact + "<br />BalanceLCY      = " + item.balanceLCY + "<br /> CreditLimitLCY       = " + item.creditLimitLCY + "</li>");
-                        }
-                    })
-                    .fail(function (jqXHR, textStatus, err) {
-                        $('#KUNDE').text('Error: ' + err);}).always(function (){$("#loader").hide();
-                    }); 
-            }       
-            var options = {
-                url: "",
-                getValue: "name",
-                list: {
-                    match: {
-                        enabled: true
-                    }
-                },
-                theme: "square"
-            };
-            $("#KUNDE").easyAutocomplete(options);
-        </script>
+        <script>(function(t,e,c,o){var n,s,i;t.SMCX=t.SMCX||[],e.getElementById(o)||(n=e.getElementsByTagName(c),s=n[n.length-1],i=e.createElement(c),i.type="text/javascript",i.async=!0,i.id=o,i.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/MDRyJcrtPGxtfo_2BazL0BkqI2ZV_2BN2KKbWJTk0dTfPNiCPFy2cj9tCFbxZ6Pd787C.js"].join(""),s.parentNode.insertBefore(i,s))})(window,document,"script","smcx-sdk");</script><a style="font: 12px Helvetica, sans-serif; color: #999; text-decoration: none;" href=https://da.surveymonkey.com/mp/customer-satisfaction-surveys/> Opret din egen spørgeundersøgelse til brugerfeedback </a>
+        
     </div>
     <footer>
         <a href="https://twitter.com/rackpeople"><img src="https://image.freepik.com/free-icon/twitter-logo_318-50476.png" alt="Twitter Logo" class="social-icon"></a>

@@ -87,6 +87,7 @@ background-color:#efefef;
     width: 100%;
     overflow:hidden;
     text-align: center;
+	clear:both;
 }
 .social-icon{
 
